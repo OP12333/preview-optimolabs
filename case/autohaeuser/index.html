@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Case Study · Automobilhandel — Optimo Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Geist:wght@100..900&display=swap" rel="stylesheet">
+<style>
+/* ======================= Farbsystem (Rezept §1 — nie ändern) ======================= */
+:root{
+  --coral:#E8846A;   /* Primär-Akzent (warm) */
+  --lavender:#9B8FD4;/* Sekundär-Akzent (kühl) */
+  --navy:#1E2D4A;    /* Textfarbe / dunkle Flächen */
+  --slate:#6B7A8D;   /* Sekundärtext */
+  --cream:#F0EBE5;   /* Slide-Hintergrund links */
+  --sand:#E8E0D8;    /* Borders / Divider */
+  --white:#FDFAF7;   /* Karten-Hintergrund */
+  --font:'Plus Jakarta Sans',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:#E3DCD3;font-family:var(--font);color:var(--navy);overflow:hidden}
+
+/* Signatur-Gradient als Text-Fill */
+.grad{background:linear-gradient(90deg,var(--coral),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* ======================= deck-stage ======================= */
+deck-stage{display:block;position:fixed;inset:0;overflow:hidden}
+deck-stage .ds-inner{position:absolute;transform-origin:top left}
+deck-stage section{width:1920px;height:1080px;display:block}
+
+/* ======================= Slide-Grundraster (Rezept §0) ======================= */
+.slide{width:1920px;height:1080px;display:grid;grid-template-columns:1fr 600px;background:var(--cream);overflow:hidden}
+
+/* ======================= Linke Spalte ======================= */
+.left{padding:42px 56px 34px 72px;display:flex;flex-direction:column;min-width:0}
+.eyebrow{font-size:20px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--slate)}
+h1{font-size:60px;font-weight:800;letter-spacing:-1.5px;line-height:1.0;color:var(--navy);margin-top:10px}
+h1 .num{background:linear-gradient(90deg,var(--coral),var(--lavender));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+
+/* Pillars */
+.pillars{display:flex;align-items:stretch;gap:12px;margin-top:18px}
+.pillar{flex:1;display:flex;align-items:center;gap:13px;background:var(--white);border:1px solid var(--sand);border-radius:18px;padding:12px 16px;min-width:0}
+.pillar-ic{flex:none;width:44px;height:44px;border-radius:50%;background:var(--cream);border:1px solid var(--sand);display:flex;align-items:center;justify-content:center}
+.pillar-ic svg{width:23px;height:23px}
+.pillar-t{font-size:24px;font-weight:700;color:var(--navy);line-height:1.1}
+.pillar-s{font-size:20px;color:var(--slate);line-height:1.15;margin-top:3px}
+.pillar.active{background:linear-gradient(90deg,var(--coral),var(--lavender));border:none;box-shadow:0 10px 28px rgba(155,143,212,.35)}
+.pillar.active .pillar-t{color:#fff}
+.pillar.active .pillar-s{color:rgba(255,255,255,.9)}
+.pillar.active .pillar-ic{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.45)}
+.pillar-arrow{align-self:center;flex:none;font-size:26px;color:var(--slate);opacity:.6}
+
+/* Content-Blocks (Before → After) */
+.blocks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.block{background:var(--white);border:1px solid var(--sand);border-radius:20px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px}
+.block.b1{border-top:5px solid rgba(155,143,212,.6)}
+.block.b2{border-top:5px solid rgba(232,132,106,.7)}
+.block.b3{border-top:5px solid rgba(30,45,74,.4)}
+.bi{display:flex;gap:10px;align-items:flex-start;font-size:22px;font-weight:500;color:rgba(30,45,74,.78);line-height:1.2}
+.bi-ic{flex:none;width:24px;height:24px;margin-top:1px;border-radius:50%;border:1.6px solid #C9CFD8;display:flex;align-items:center;justify-content:center}
+.bi-ic svg{width:14px;height:14px}
+.bi-after{margin-top:auto;border-top:1px dashed var(--sand);padding-top:10px;font-weight:600;color:var(--navy)}
+.bi-after .bi-ic{border:none}
+.b1 .bi-after .bi-ic{background:rgba(155,143,212,.18)}
+.b2 .bi-after .bi-ic{background:rgba(232,132,106,.18)}
+.b3 .bi-after .bi-ic{background:rgba(30,45,74,.12)}
+
+/* Fact-Strip */
+.fact-strip{margin-top:14px;background:rgba(232,132,106,.12);border:1px solid rgba(232,132,106,.28);border-radius:14px;padding:11px 22px;font-size:24px;font-weight:500;color:#C05B41;line-height:1.25}
+.fact-strip b{font-weight:700}
+
+/* Insight-Strip */
+.insights{margin-top:14px;display:flex;background:rgba(253,250,247,.6);border:1px solid var(--sand);border-radius:18px;backdrop-filter:blur(10px)}
+.insight{flex:1;padding:12px 22px;min-width:0}
+.insight + .insight{border-left:1px solid var(--sand)}
+.in-num{font-size:30px;font-weight:800}
+.in-txt{font-size:20px;color:var(--slate);line-height:1.22;margin-top:3px}
+
+/* Ergebnis-Divider + Stats */
+.results-divider{display:flex;align-items:center;gap:18px;margin-top:16px}
+.results-divider::before,.results-divider::after{content:"";flex:1;height:1px;background:var(--sand)}
+.results-divider span{font-size:20px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--slate)}
+.stats-row{margin-top:12px;background:var(--navy);border-radius:20px;padding:18px 28px;display:flex;box-shadow:0 18px 40px rgba(30,45,74,.28)}
+.stat{flex:1;padding:2px 26px;min-width:0}
+.stat + .stat{border-left:1px solid rgba(255,255,255,.14)}
+.stat-num{font-size:40px;font-weight:800;line-height:1.05}
+.stat-lbl{font-size:22px;color:rgba(255,255,255,.88);line-height:1.2;margin-top:5px}
+
+/* ======================= Rechte Spalte — Phone-Bühne (Rezept §4) ======================= */
+.right{position:relative;overflow:hidden;background:linear-gradient(135deg,#EDE8E2 0%,#E2DBD4 40%,#D8D0C8 100%)}
+.right::before{content:"";position:absolute;inset:0;background-image:
+  radial-gradient(circle at 75% 25%, rgba(155,143,212,.18) 0%, transparent 55%),
+  radial-gradient(circle at 30% 75%, rgba(232,132,106,.14) 0%, transparent 50%)}
+.right::after{content:"";position:absolute;left:0;top:0;bottom:0;width:60px;background:linear-gradient(90deg,#EDE8E2 0%,transparent 100%)}
+.phone-wrap{position:absolute;left:50%;top:136px;transform:translateX(-50%);width:460px}
+.phone-wrap svg.iphone{width:460px;height:auto;display:block;overflow:visible}
+.iphone text{font-family:var(--font)}
+
+/* Schwebende KPI-Badges */
+.phone-badge{position:absolute;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.9);border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.1);padding:14px 20px;z-index:3}
+.pb-label{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--slate)}
+.pb-value{font-size:36px;font-weight:800;line-height:1.05;margin-top:2px}
+.pb-sub{font-size:15px;color:var(--slate);margin-top:3px}
+.badge-top{left:26px;top:52px}
+.badge-mid{right:18px;top:640px}
+
+/* Logo-Watermark (echtes Optimo-Labs-Logo, Glass-Pille) */
+.logo-mark{position:absolute;right:30px;bottom:30px;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.9);border-radius:999px;box-shadow:0 4px 24px rgba(0,0,0,.1);padding:12px 22px;display:flex;align-items:center;z-index:3}
+.logo-mark svg{height:30px;width:auto;display:block}
+
+/* ======================= Tweaks-Panel (Rezept §9; Taste „t") ======================= */
+#tweaks-panel{position:fixed;right:14px;bottom:14px;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid var(--sand);border-radius:14px;padding:12px 14px;box-shadow:0 8px 30px rgba(0,0,0,.15);display:none;font-size:12px}
+#tweaks-panel.show{display:block}
+#tweaks-panel h3{font-size:12px;font-weight:700;margin-bottom:8px;color:var(--navy)}
+.tweak-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:6px}
+.tweak-row label{color:var(--slate)}
+.tweak-row input{border:none;background:none;width:34px;height:24px;padding:0;cursor:pointer}
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+  <section data-label="Case Study">
+    <div class="slide">
+
+      <!-- ======================= LINKS ======================= -->
+      <div class="left">
+        <div class="eyebrow">Case Study / Automobilhandel · Meridian Automobile, München</div>
+
+        <h1><span class="num">+28&nbsp;%</span> mehr Ankäufe &amp; 9&nbsp;Std. pro Woche gespart – mit&nbsp;KI</h1>
+
+        <div class="pillars">
+          <div class="pillar">
+            <span class="pillar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#9B8FD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 18.5h4"/><path d="M9.5 7h5M9.5 10.5h5M9.5 14h3"/></svg></span>
+            <div><div class="pillar-t">Fahrzeugdaten mobil</div><div class="pillar-s">Alles sofort aufs Handy</div></div>
+          </div>
+          <span class="pillar-arrow">→</span>
+          <div class="pillar active">
+            <span class="pillar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.6" fill="#fff" stroke="none"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></svg></span>
+            <div><div class="pillar-t">Ankauf-Pipeline</div><div class="pillar-s">Radar statt Zulieferer</div></div>
+          </div>
+          <span class="pillar-arrow">→</span>
+          <div class="pillar">
+            <span class="pillar-ic"><svg viewBox="0 0 24 24" fill="none" stroke="#1E2D4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M16 2.5v4M8 2.5v4M3 10h18"/><path d="M9 15.5l2 2 4-4"/></svg></span>
+            <div><div class="pillar-t">Termin &amp; Follow-up</div><div class="pillar-s">Nichts bleibt liegen</div></div>
+          </div>
+        </div>
+
+        <div class="blocks">
+          <div class="block b1">
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Fahrzeugdaten mühsam zusammengesucht</div>
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Unfallschäden erst bei Besichtigung entdeckt</div>
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Alles nur am Platz einsehbar, nicht unterwegs</div>
+            <div class="bi bi-after"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#6B5FC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg></span>Jetzt: komplettes Profil in Sekunden aufs Handy</div>
+          </div>
+          <div class="block b2">
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Ankauf hing an wenigen großen Zulieferern</div>
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Neue Inserate manuell beobachtet – oft zu spät</div>
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Netzwerk &amp; Privatankauf ohne System</div>
+            <div class="bi bi-after"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#C06040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg></span>Jetzt: Radar über Börsen, Netzwerk &amp; Privat</div>
+          </div>
+          <div class="block b3">
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Termine ohne Erinnerung platzten oft</div>
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Offene Anfragen versandeten ohne Follow-up</div>
+            <div class="bi"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#8B95A3" stroke-width="1.8" stroke-linecap="round"><path d="M3 7h8"/></svg></span>Nachfassen hing am einzelnen Verkäufer</div>
+            <div class="bi bi-after"><span class="bi-ic"><svg viewBox="0 0 14 14" fill="none" stroke="#1E2D4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7l4 4 6-6"/></svg></span>Jetzt: Erinnerung + Follow-up laufen automatisch</div>
+          </div>
+        </div>
+
+        <div class="fact-strip"><b>Fact:</b> Gute Gebrauchte sind nach Stunden vergriffen – wer zuerst anfragt, kauft ein.</div>
+
+        <div class="insights">
+          <div class="insight"><div class="in-num grad">&lt; 30 Min.</div><div class="in-txt">entscheiden bei gefragten Gebrauchten über den Zuschlag</div></div>
+          <div class="insight"><div class="in-num grad">3×</div><div class="in-txt">größerer Beschaffungs-Radius: Börsen, Netzwerk &amp; Privat</div></div>
+          <div class="insight"><div class="in-num grad">1 Profil</div><div class="in-txt">statt 5 Quellen – alle Fahrzeugdaten gebündelt, mobil</div></div>
+        </div>
+
+        <div class="results-divider"><span>Ergebnisse nach 8 Wochen</span></div>
+        <div class="stats-row">
+          <div class="stat"><div class="stat-num grad">+28 %</div><div class="stat-lbl">Ankäufe über die eigene Pipeline</div></div>
+          <div class="stat"><div class="stat-num grad">&lt; 5 Min.</div><div class="stat-lbl">vom Inserat zur fertigen Anfrage</div></div>
+          <div class="stat"><div class="stat-num grad">–9 Std.</div><div class="stat-lbl">Recherche &amp; Admin pro Woche</div></div>
+        </div>
+      </div>
+
+      <!-- ======================= RECHTS: Phone-Bühne ======================= -->
+      <div class="right">
+        <div class="phone-wrap">
+          <svg class="iphone" viewBox="-60 -40 420 700" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="pg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#4A4E58"/><stop offset="100%" stop-color="#23262D"/>
+              </linearGradient>
+              <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#171A21"/><stop offset="100%" stop-color="#0C0E13"/>
+              </linearGradient>
+              <linearGradient id="hg1" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#E8846A"/><stop offset="100%" stop-color="#9B8FD4"/>
+              </linearGradient>
+              <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#2B3A58"/><stop offset="100%" stop-color="#1E2D4A"/>
+              </linearGradient>
+              <filter id="ph-shadow" x="-40%" y="-30%" width="180%" height="170%">
+                <feDropShadow dx="0" dy="26" stdDeviation="30" flood-color="#1E2D4A" flood-opacity="0.38"/>
+              </filter>
+              <clipPath id="sc1"><rect x="12" y="12" width="276" height="596" rx="37"/></clipPath>
+            </defs>
+
+            <!-- Voice-Rings (hinter dem Gerät) -->
+            <g fill="none" stroke="#9B8FD4" stroke-width="2">
+              <circle cx="150" cy="482" r="170" opacity="0.8">
+                <animate attributeName="r" values="170;215;170" dur="3s" repeatCount="indefinite" begin="0s"/>
+                <animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite" begin="0s"/>
+              </circle>
+              <circle cx="150" cy="482" r="215" opacity="0.6">
+                <animate attributeName="r" values="215;265;215" dur="3s" repeatCount="indefinite" begin="0.8s"/>
+                <animate attributeName="opacity" values="0.6;0;0.6" dur="3s" repeatCount="indefinite" begin="0.8s"/>
+              </circle>
+              <circle cx="150" cy="482" r="260" opacity="0.4">
+                <animate attributeName="r" values="260;310;260" dur="3s" repeatCount="indefinite" begin="1.6s"/>
+                <animate attributeName="opacity" values="0.4;0;0.4" dur="3s" repeatCount="indefinite" begin="1.6s"/>
+              </circle>
+            </g>
+
+            <!-- Body + Bezel + Screen -->
+            <rect x="0" y="0" width="300" height="620" rx="48" fill="url(#pg1)" filter="url(#ph-shadow)"/>
+            <rect x="5" y="5" width="290" height="610" rx="44" fill="#05070A"/>
+            <rect x="12" y="12" width="276" height="596" rx="37" fill="url(#sg1)"/>
+            <rect x="1.5" y="1.5" width="297" height="617" rx="47" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.5"/>
+
+            <g clip-path="url(#sc1)">
+              <!-- Chat-Header -->
+              <rect x="12" y="12" width="276" height="96" fill="url(#hg1)"/>
+              <text x="30" y="40" font-size="14" font-weight="700" fill="#fff">9:41</text>
+              <rect x="244" y="29" width="22" height="11" rx="3" fill="none" stroke="#fff" stroke-width="1.2"/>
+              <rect x="246" y="31" width="14" height="7" rx="1.5" fill="#fff"/>
+              <rect x="267.5" y="32" width="2.5" height="5" rx="1" fill="#fff"/>
+              <rect x="110" y="22" width="80" height="22" rx="11" fill="#05070A"/>
+              <circle cx="174" cy="33" r="4" fill="#10131A"/>
+              <circle cx="44" cy="78" r="17" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"/>
+              <rect x="37" y="71" width="14" height="14" rx="4" fill="none" stroke="#fff" stroke-width="1.6"/>
+              <circle cx="41.5" cy="77" r="1.4" fill="#fff"/><circle cx="46.5" cy="77" r="1.4" fill="#fff"/>
+              <path d="M41 81.5h6" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
+              <text x="70" y="74" font-size="14.5" font-weight="700" fill="#fff">KI-Assistent</text>
+              <circle cx="74" cy="88" r="3.2" fill="#4ADE80"/>
+              <text x="82" y="92" font-size="11" fill="rgba(255,255,255,0.92)">Online · Meridian Automobile</text>
+
+              <!-- Bubble 1: Radar-Meldung -->
+              <rect x="26" y="122" width="204" height="52" rx="14" fill="#F5F1EB"/>
+              <text x="40" y="144" font-size="12" font-weight="600" fill="#1E2D4A">Neues Inserat passt zu</text>
+              <text x="40" y="161" font-size="12" font-weight="600" fill="#1E2D4A">Ihrem Suchprofil ✓</text>
+              <text x="26" y="190" font-size="9" letter-spacing="0.5" fill="rgba(255,255,255,0.45)">FAHRZEUGBÖRSE · VOR 2 MIN</text>
+
+              <!-- Bubble 2: Fahrzeug-Karte -->
+              <rect x="26" y="200" width="248" height="116" rx="16" fill="url(#bg1)" stroke="rgba(255,255,255,0.10)"/>
+              <text x="42" y="226" font-size="13.5" font-weight="700" fill="#fff">BMW 320d Touring · 2019</text>
+              <text x="42" y="244" font-size="11.5" fill="rgba(255,255,255,0.85)">84.000 km · Automatik · 21.400 €</text>
+              <path d="M42 254h216" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+              <text x="42" y="272" font-size="10.5" fill="#B9E8CD">✓ Ausstattung: AHK · Leder · Navi Prof.</text>
+              <text x="42" y="288" font-size="10.5" fill="#B9E8CD">✓ 2. Hand · Serviceheft gepflegt</text>
+              <text x="42" y="304" font-size="10.5" fill="#B9E8CD">✓ keine Unfallschäden eingetragen</text>
+
+              <!-- CTA -->
+              <rect x="26" y="328" width="196" height="34" rx="17" fill="url(#hg1)"/>
+              <text x="124" y="349" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Anfrage-Entwurf senden →</text>
+
+              <!-- Bubble 3: Bestätigung -->
+              <rect x="26" y="374" width="236" height="42" rx="12" fill="#F5F1EB"/>
+              <text x="40" y="391" font-size="11" font-weight="600" fill="#1E7A4A">✓ Gesendet 10:24</text>
+              <text x="40" y="407" font-size="11" fill="#1E2D4A">Besichtigung Fr 14:00 vorgemerkt</text>
+
+              <!-- Pills -->
+              <rect x="26" y="426" width="118" height="22" rx="11" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.25)"/>
+              <text x="85" y="440.5" font-size="9.5" fill="#fff" text-anchor="middle">Erinnerung: Do 18:00</text>
+              <rect x="150" y="426" width="112" height="22" rx="11" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.25)"/>
+              <text x="206" y="440.5" font-size="9.5" fill="#fff" text-anchor="middle">+ Kriterien anpassen</text>
+
+              <!-- Voice-Indikator mit Waveform -->
+              <rect x="26" y="462" width="248" height="40" rx="13" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.12)"/>
+              <circle cx="46" cy="482" r="10" fill="url(#hg1)"/>
+              <rect x="44.6" y="476.5" width="2.8" height="7" rx="1.4" fill="#fff"/>
+              <path d="M42 482a4 4 0 0 0 8 0M46 486v3" stroke="#fff" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+              <g fill="#9B8FD4">
+                <rect x="64" y="477" width="3" height="10" rx="1.5"/>
+                <rect x="70" y="473" width="3" height="18" rx="1.5">
+                  <animate attributeName="height" values="18;8;18" dur="1.2s" repeatCount="indefinite"/>
+                  <animate attributeName="y" values="473;478;473" dur="1.2s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="76" y="475" width="3" height="14" rx="1.5"/>
+                <rect x="82" y="471" width="3" height="22" rx="1.5">
+                  <animate attributeName="height" values="22;10;22" dur="1.5s" repeatCount="indefinite"/>
+                  <animate attributeName="y" values="471;477;471" dur="1.5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="88" y="474" width="3" height="16" rx="1.5"/>
+                <rect x="94" y="477" width="3" height="10" rx="1.5">
+                  <animate attributeName="height" values="10;16;10" dur="1s" repeatCount="indefinite"/>
+                  <animate attributeName="y" values="477;474;477" dur="1s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="100" y="479" width="3" height="6" rx="1.5"/>
+              </g>
+              <text x="112" y="486" font-size="10" fill="rgba(255,255,255,0.85)">Ankauf-Radar aktiv</text>
+
+              <!-- Typing-Dots -->
+              <circle cx="40" cy="528" r="4" fill="rgba(255,255,255,0.5)">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" begin="0s"/>
+              </circle>
+              <circle cx="52" cy="528" r="4" fill="rgba(255,255,255,0.5)">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" begin="0.2s"/>
+              </circle>
+              <circle cx="64" cy="528" r="4" fill="rgba(255,255,255,0.5)">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="1.2s" repeatCount="indefinite" begin="0.4s"/>
+              </circle>
+
+              <!-- Input-Bar -->
+              <rect x="26" y="546" width="248" height="38" rx="19" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.16)"/>
+              <text x="42" y="570" font-size="11" fill="rgba(255,255,255,0.45)">Nachricht schreiben…</text>
+              <circle cx="252" cy="565" r="14" fill="url(#hg1)"/>
+              <path d="M246 565h11M253 560l5 5-5 5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- Home-Indicator -->
+              <rect x="110" y="595" width="80" height="4" rx="2" fill="rgba(255,255,255,0.4)"/>
+            </g>
+
+            <!-- Seitliche Buttons -->
+            <rect x="-3" y="140" width="3.5" height="32" rx="1.5" fill="#2A2E36"/>
+            <rect x="-3" y="186" width="3.5" height="54" rx="1.5" fill="#2A2E36"/>
+            <rect x="-3" y="250" width="3.5" height="54" rx="1.5" fill="#2A2E36"/>
+            <rect x="299.5" y="172" width="3.5" height="82" rx="1.5" fill="#2A2E36"/>
+          </svg>
+        </div>
+
+        <div class="phone-badge badge-top">
+          <div class="pb-label">Neues Inserat</div>
+          <div class="pb-value grad">&lt; 5 Min.</div>
+          <div class="pb-sub">bis zur fertigen Anfrage</div>
+        </div>
+        <div class="phone-badge badge-mid">
+          <div class="pb-label">Ankauf-Radar</div>
+          <div class="pb-value grad">24/7</div>
+          <div class="pb-sub">Börsen · Netzwerk · Privat</div>
+        </div>
+
+        <div class="logo-mark" aria-label="Optimo Labs">
+          <svg viewBox="0 0 900 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="slashGrad" x1="0" y1="0" x2="0.6" y2="1">
+                <stop offset="0%" stop-color="#F59E0B"/><stop offset="50%" stop-color="#EC4899"/><stop offset="100%" stop-color="#8B5CF6"/>
+              </linearGradient>
+            </defs>
+            <g transform="translate(20,22)">
+              <text x="0" y="122" font-family="'Geist','Plus Jakarta Sans',-apple-system,sans-serif" font-size="128" font-weight="420" letter-spacing="-6" fill="#1e293b">Optimo</text>
+              <g transform="translate(455,10)"><rect x="0" y="0" width="12" height="135" rx="6" fill="url(#slashGrad)" transform="rotate(16 6 67.5)"/></g>
+              <text x="512" y="122" font-family="'Geist','Plus Jakarta Sans',-apple-system,sans-serif" font-size="128" font-weight="280" letter-spacing="-4" fill="#64748b">Labs</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</deck-stage>
+
+<!-- Tweaks-Panel (Rezept §9) — Taste „t" blendet es ein/aus -->
+<div id="tweaks-panel">
+  <h3>Tweaks</h3>
+  <div class="tweak-row"><label>Akzent Coral</label><input type="color" id="tw-coral" value="#E8846A"></div>
+  <div class="tweak-row"><label>Akzent Lavendel</label><input type="color" id="tw-lavender" value="#9B8FD4"></div>
+  <div class="tweak-row"><label>Hintergrund</label><input type="color" id="tw-bg" value="#F0EBE5"></div>
+</div>
+
+<script>
+/* ============ deck-stage Web-Component (skaliert 1920×1080 auf jeden Viewport) ============ */
+class DeckStage extends HTMLElement{
+  connectedCallback(){
+    const w = +this.getAttribute('width') || 1920;
+    const h = +this.getAttribute('height') || 1080;
+    const inner = document.createElement('div');
+    inner.className = 'ds-inner';
+    while (this.firstChild) inner.appendChild(this.firstChild);
+    this.appendChild(inner);
+    inner.style.width = w + 'px';
+    inner.style.height = h + 'px';
+    const fit = () => {
+      const s = Math.min(this.clientWidth / w, this.clientHeight / h);
+      inner.style.transform = 'scale(' + s + ')';
+      inner.style.left = ((this.clientWidth - w * s) / 2) + 'px';
+      inner.style.top = ((this.clientHeight - h * s) / 2) + 'px';
+    };
+    window.addEventListener('resize', fit);
+    requestAnimationFrame(fit);
+  }
+}
+customElements.define('deck-stage', DeckStage);
+
+/* ============ Tweaks-Panel: setzt CSS-Variablen live (Taste „t") ============ */
+(function(){
+  const panel = document.getElementById('tweaks-panel');
+  const map = { 'tw-coral':'--coral', 'tw-lavender':'--lavender', 'tw-bg':'--cream' };
+  Object.keys(map).forEach(id => {
+    document.getElementById(id).addEventListener('input', e => {
+      document.documentElement.style.setProperty(map[id], e.target.value);
+      try { window.__edit_mode_set_keys && window.__edit_mode_set_keys({[map[id]]: e.target.value}); } catch(_){}
+    });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 't' || e.key === 'T') panel.classList.toggle('show');
+  });
+})();
+</script>
+
+</body>
+</html>
