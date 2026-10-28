@@ -12,8 +12,9 @@
   :root{
     --ink:#2A2630; --head:#241E2B; --soft:#5C5660; --muted:#8B847E; --faint:#ACA59C;
     --line:#ECE5DD; --line2:#F1ECE5; --card:#FFFFFF; --sand:#F7F3EE; --sand2:#FBF9F5;
-    --plum:#4C3E5E; --plum-deep:#2E2535; --plum-soft:#F1ECF3; --plum-line:#E4DCEA;
+    --plum:#2F5578; --plum-deep:#2E2535; --plum-soft:#F1ECF3; --plum-line:#E4DCEA;
     --coral:#ED7472; --terra:#D47735; --green:#248F59;
+    --acc:#2F5578; --acc-deep:#1D354A; --acc-soft:#F0F3F6; --acc-line:#DEE4E9;
     --head-f:'Fraunces',Georgia,'Times New Roman',serif;
     --body-f:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   }
@@ -21,7 +22,7 @@
   html{-webkit-text-size-adjust:100%}
   body{margin:0;color:var(--ink);font-family:var(--body-f);line-height:1.5;font-size:14px;-webkit-font-smoothing:antialiased}
   .bg{position:fixed;inset:0;z-index:-1;background:
-      radial-gradient(1150px 620px at 12% -8%, #F1EAF3 0%, rgba(241,234,243,0) 56%),
+      radial-gradient(1150px 620px at 12% -8%, #EAEEF2 0%, rgba(234,238,242,0) 56%),
       radial-gradient(980px 600px at 102% -4%, #FBEBE2 0%, rgba(251,235,226,0) 52%),
       radial-gradient(820px 720px at 88% 110%, #EEF3EB 0%, rgba(238,243,235,0) 55%),
       linear-gradient(180deg,#FBFAF8 0%, #F4EFE8 100%);}
@@ -31,23 +32,23 @@
   .hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
   .brand-logo svg{height:26px;width:auto;display:block}
   .hdr-label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
-  .hdr-label .d{width:14px;height:2px;border-radius:1px;background:var(--coral)}
+  .hdr-label .d{width:14px;height:2px;border-radius:1px;background:var(--acc)}
   .hero{max-width:740px;margin-bottom:22px}
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:500}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--acc);font-weight:500}
   h1{font-family:var(--head-f);font-size:clamp(27px,4vw,37px);line-height:1.12;letter-spacing:-.012em;color:var(--head);font-weight:500;margin:13px 0 0}
   .sub{font-size:15.5px;color:var(--soft);margin:12px 0 0;line-height:1.5}
   .loc{display:inline-block;margin-top:13px;font-size:12.5px;color:var(--muted);border:1px solid var(--line);background:var(--sand2);padding:5px 12px;border-radius:999px}
   /* ===== System-UI-Mock ===== */
   .app{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-top:6px;
     box-shadow:0 38px 70px -30px rgba(58,40,56,.24), 0 2px 6px rgba(58,40,56,.05)}
-  .app-sheen{height:3px;background:linear-gradient(90deg,#4C3E5E,#ED7472,#F59E0B,#248F59,#4C3E5E);background-size:220% 100%;animation:sheen 7s linear infinite}
+  .app-sheen{height:3px;background:linear-gradient(90deg,var(--acc-line),var(--acc),var(--acc-line));background-size:220% 100%;animation:sheen 7s linear infinite}
   @keyframes sheen{to{background-position:220% 0}}
   .app-top{display:flex;align-items:center;gap:10px;padding:11px 15px;border-bottom:1px solid var(--line);background:#FBF9F6}
-  .app-top .mk{width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#4C3E5E,#ED7472,#D47735)}
+  .app-top .mk{width:18px;height:18px;border-radius:5px;background:linear-gradient(135deg,#2F5578,#ED7472,#D47735)}
   .app-top .ttl{font-size:13px;font-weight:600;color:var(--head)}
   .app-top .nav{font-size:12px;color:var(--muted)}
   .app-top .right{margin-left:auto;display:flex;align-items:center;gap:8px}
-  .app-top .ai{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--plum);background:var(--plum-soft);border:1px solid var(--plum-line);padding:4px 9px;border-radius:999px;font-weight:600}
+  .app-top .ai{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--acc);background:var(--acc-soft);border:1px solid var(--acc-line);padding:4px 9px;border-radius:999px;font-weight:600}
   .app-top .ai .spark{width:12px;height:12px}
   .app-top .tag{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;color:var(--muted);border:1px solid var(--line);background:var(--card);padding:4px 9px;border-radius:999px}
   .app-top .tag .live{width:6px;height:6px;border-radius:50%;background:var(--green);animation:blink 2.2s ease-in-out infinite}
@@ -68,14 +69,14 @@
   .stage{display:flex;align-items:center;gap:10px;margin-top:9px}
   .stage .snm{font-size:12px;color:var(--soft);width:80px;flex:none}
   .stage .sbarp{flex:1;height:8px;border-radius:999px;background:var(--sand);overflow:hidden}
-  .stage .sbarp i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#C2B2D1,#4C3E5E)}
+  .stage .sbarp i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--acc-line),var(--acc))}
   .stage .sct{font-size:12px;font-weight:600;color:var(--head);font-variant-numeric:tabular-nums;width:16px;text-align:right}
   .stage .sval{font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums;width:48px;text-align:right;flex:none}
-  .stage.active .snm{color:var(--plum);font-weight:600}
-  .stage.active .sbarp{box-shadow:0 0 0 2px var(--plum-soft)}
+  .stage.active .snm{color:var(--acc);font-weight:600}
+  .stage.active .sbarp{box-shadow:0 0 0 2px var(--acc-soft)}
   .src{display:flex;align-items:center;gap:10px;margin-top:9px}
   .src .cnm{font-size:12px;color:var(--soft);width:90px;flex:none;display:flex;align-items:center;gap:7px}
-  .src .cdot{width:7px;height:7px;border-radius:50%;flex:none}
+  .src .cdot{width:12px;height:2px;border-radius:1px;flex:none}
   .src .cbar{flex:1;height:8px;border-radius:999px;background:var(--sand);overflow:hidden}
   .src .cbar i{display:block;height:100%;border-radius:999px}
   .src .cv{font-size:12px;font-weight:600;color:var(--head);font-variant-numeric:tabular-nums;width:18px;text-align:right}
@@ -84,9 +85,9 @@
   .steps{border-top:1px solid var(--line);padding:15px 16px 17px;background:var(--sand2)}
   .steps .pane-h{margin-bottom:0}
   .stl{display:flex;align-items:flex-start;justify-content:space-between;position:relative;margin-top:13px}
-  .stl::before{content:"";position:absolute;left:8%;right:8%;top:7px;height:2px;background:var(--plum-line)}
+  .stl::before{content:"";position:absolute;left:8%;right:8%;top:7px;height:2px;background:var(--acc-line)}
   .stp2{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 8px;text-align:center}
-  .stp2 .sdot{width:15px;height:15px;border-radius:50%;background:var(--card);border:2px solid var(--plum)}
+  .stp2 .sdot{width:15px;height:15px;border-radius:50%;background:var(--card);border:2px solid var(--acc)}
   .stp2.done .sdot{background:var(--green);border-color:var(--green)}
   .stp2 .stx{font-size:11px;color:var(--soft);line-height:1.35}
   .stp2 .stx b{display:block;font-weight:600;color:var(--head);margin-bottom:2px}
@@ -96,7 +97,7 @@
   .who-row .tm{font-size:10.5px;color:var(--faint)}
   .bubble{background:var(--sand2);border:1px solid var(--line);border-radius:4px 14px 14px 14px;padding:12px 14px;font-size:14px;color:var(--ink);line-height:1.5}
   .kinote{margin-top:13px}
-  .kihdr{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--plum);font-weight:600;margin-bottom:8px}
+  .kihdr{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--acc);font-weight:600;margin-bottom:8px}
   .kihdr .spark{width:13px;height:13px}
   .chips{display:flex;flex-wrap:wrap;gap:6px}
   .chip{font-size:11.5px;color:var(--soft);background:var(--sand2);border:1px solid var(--line);border-radius:999px;padding:4px 11px}
@@ -114,19 +115,19 @@
   .score .sbar i{display:block;height:100%;width:87%;border-radius:999px;background:linear-gradient(90deg,var(--terra),var(--green));transform-origin:left;animation:grow2 .9s ease both}
   @keyframes grow2{from{transform:scaleX(.05)}to{transform:scaleX(1)}}
   /* KI-Gesprächs-Briefing */
-  .draft{margin-top:14px;border:1px solid var(--plum-line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#FCFAFD,#FBF9F6)}
-  .draft-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--plum-line);background:#FAF6FB}
-  .dh-l{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--plum)}
+  .draft{margin-top:14px;border:1px solid var(--acc-line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#FCFAFD,#FBF9F6)}
+  .draft-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--acc-line);background:#FAF6FB}
+  .dh-l{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--acc)}
   .dh-l .spark{width:14px;height:14px}
   .dh-r{font-size:10.5px;color:var(--muted)}
   .draft-b{padding:13px 14px;font-size:13.5px;color:var(--ink);line-height:1.6}
   .draft-b b{font-weight:600;color:var(--head)}
-  .draft-b .caret{display:inline-block;width:2px;height:1.05em;background:var(--plum);margin-left:1px;vertical-align:-2px;animation:caret 1.1s steps(1) infinite}
+  .draft-b .caret{display:inline-block;width:2px;height:1.05em;background:var(--acc);margin-left:1px;vertical-align:-2px;animation:caret 1.1s steps(1) infinite}
   @keyframes caret{50%{opacity:0}}
   .draft-f{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:0 14px 13px}
   .abtn{display:inline-flex;align-items:center;gap:7px;font-size:12px;padding:9px 13px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--head);font-weight:500}
   .abtn svg{width:13px;height:13px}
-  .abtn.pri{background:var(--plum);color:#fff;border-color:var(--plum)}
+  .abtn.pri{background:var(--acc);color:#fff;border-color:var(--acc)}
   .df-note{font-size:10.5px;color:var(--muted);margin-left:auto}
   .cap{font-size:11.5px;color:var(--muted);margin:11px 4px 0;display:flex;align-items:center;gap:7px}
   .cap svg{width:13px;height:13px;color:var(--terra);flex:none}
@@ -153,7 +154,7 @@
   .check .ci .ck svg{width:10px;height:10px;color:var(--green)}
   /* Hebel 3 – Mini-Timeline */
   .tl{display:flex;align-items:flex-start;justify-content:space-between;position:relative;padding:2px 4px 0}
-  .tl::before{content:"";position:absolute;left:11%;right:11%;top:8px;height:2px;background:var(--plum-line)}
+  .tl::before{content:"";position:absolute;left:11%;right:11%;top:8px;height:2px;background:var(--acc-line)}
   .tl .tp{position:relative;display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;z-index:1}
   .tl .tp .dot{width:15px;height:15px;border-radius:50%;background:var(--card);border:2px solid var(--terra)}
   .tl .tp.fill .dot{background:var(--terra)}
@@ -166,7 +167,7 @@
   @media (max-width:860px){.benes{flex-direction:column;align-items:flex-start;row-gap:7px}.bene + .bene::before{display:none}}
   .bene .d{display:none}
   /* CTA */
-  .cta{margin-top:26px;background:linear-gradient(120deg,var(--plum-deep),var(--plum));color:#fff;border-radius:20px;padding:24px 26px;
+  .cta{margin-top:26px;background:linear-gradient(120deg,var(--acc-deep),var(--acc));color:#fff;border-radius:20px;padding:24px 26px;
     display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:0 26px 48px -26px rgba(46,37,53,.55)}
   .cta-t{font-family:var(--head-f);font-size:20px;font-weight:500;letter-spacing:-.01em}
   .cta-s{font-size:13.5px;color:rgba(255,255,255,.8);margin-top:5px}
@@ -236,15 +237,15 @@
         </div>
         <div>
           <div class="pane-h"><span>Sources this week</span><span class="hint">Example</span></div>
-          <div class="src"><span class="cnm"><span class="cdot" style="background:#4C3E5E"></span>Outreach</span><span class="cbar"><i style="width:100%;background:#4C3E5E"></i></span><span class="cv">8</span></div>
-          <div class="src"><span class="cnm"><span class="cdot" style="background:#6E5C84"></span>Website</span><span class="cbar"><i style="width:62%;background:#6E5C84"></i></span><span class="cv">5</span></div>
-          <div class="src"><span class="cnm"><span class="cdot" style="background:#93849F"></span>LinkedIn</span><span class="cbar"><i style="width:38%;background:#93849F"></i></span><span class="cv">3</span></div>
-          <div class="src"><span class="cnm"><span class="cdot" style="background:#B7ABC2"></span>Referral</span><span class="cbar"><i style="width:25%;background:#B7ABC2"></i></span><span class="cv">2</span></div>
+          <div class="src"><span class="cnm"><span class="cdot" style="background:#2F5578"></span>Outreach</span><span class="cbar"><i style="width:100%;background:#2F5578"></i></span><span class="cv">8</span></div>
+          <div class="src"><span class="cnm"><span class="cdot" style="background:#4A6E8E"></span>Website</span><span class="cbar"><i style="width:62%;background:#4A6E8E"></i></span><span class="cv">5</span></div>
+          <div class="src"><span class="cnm"><span class="cdot" style="background:#6D8CA6"></span>LinkedIn</span><span class="cbar"><i style="width:38%;background:#6D8CA6"></i></span><span class="cv">3</span></div>
+          <div class="src"><span class="cnm"><span class="cdot" style="background:#9DB2C4"></span>Referral</span><span class="cbar"><i style="width:25%;background:#9DB2C4"></i></span><span class="cv">2</span></div>
         </div>
       </div>
       <div class="col-right">
         <div class="who-row">
-          <span class="av" style="background:#6E5C84">OUT</span>
+          <span class="av" style="background:#4A6E8E">OUT</span>
           <span><span class="nm">New contact</span> · <span class="tm">via outreach · in “Qualified”</span></span>
         </div>
         <div class="bubble">Thank you for your message – we currently have a larger project coming up. We would like to discuss it in a first call.</div>
@@ -298,7 +299,7 @@
   <h2 class="ah">Three starting points for your sales team</h2>
   <div class="levers">
     <div class="lever">
-      <div class="ln"><span class="d" style="background:var(--terra)"></span>Qualification</div>
+      <div class="ln"><span class="d" style="background:var(--acc)"></span>Qualification</div>
       <h3>Spot potential earlier</h3>
       <p>Source, need and fit are assessed before the meeting – not during it.</p>
       <div class="lvis">
@@ -312,7 +313,7 @@
       <div class="grow"></div>
     </div>
     <div class="lever">
-      <div class="ln"><span class="d" style="background:var(--plum)"></span>Preparation</div>
+      <div class="ln"><span class="d" style="background:var(--acc)"></span>Preparation</div>
       <h3>Prepare first calls properly</h3>
       <p>Need, context and open questions sit together, ready – no more searching.</p>
       <div class="lvis">
@@ -325,7 +326,7 @@
       <div class="grow"></div>
     </div>
     <div class="lever">
-      <div class="ln"><span class="d" style="background:var(--green)"></span>Follow-up</div>
+      <div class="ln"><span class="d" style="background:var(--acc)"></span>Follow-up</div>
       <h3>Make follow-up more structured</h3>
       <p>Next steps get planned instead of drowning in day-to-day work.</p>
       <div class="lvis">
@@ -341,7 +342,7 @@
 
   <div class="benes">
     <span class="bene"><span class="d" style="background:var(--coral)"></span>Less manual rework</span>
-    <span class="bene"><span class="d" style="background:var(--plum)"></span>Better call preparation</span>
+    <span class="bene"><span class="d" style="background:var(--acc)"></span>Better call preparation</span>
     <span class="bene"><span class="d" style="background:var(--terra)"></span>Clearer priorities in sales</span>
     <span class="bene"><span class="d" style="background:var(--green)"></span>Fewer follow-ups get lost</span>
   </div>
