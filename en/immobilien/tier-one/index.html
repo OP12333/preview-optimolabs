@@ -31,7 +31,7 @@
   .hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:28px}
   .brand-logo svg{height:26px;width:auto;display:block}
   .hdr-label{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
-  .hdr-label .d{width:7px;height:7px;border-radius:50%;background:var(--coral)}
+  .hdr-label .d{width:14px;height:2px;border-radius:1px;background:var(--coral)}
   .hero{max-width:740px;margin-bottom:22px}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:500}
   h1{font-family:var(--head-f);font-size:clamp(27px,4vw,37px);line-height:1.12;letter-spacing:-.012em;color:var(--head);font-weight:500;margin:13px 0 0}
@@ -112,8 +112,8 @@
   .ah{font-family:var(--head-f);font-size:19px;font-weight:500;color:var(--head);margin:28px 0 0;letter-spacing:-.01em}
   .levers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-top:14px}
   .lever{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:17px 18px;display:flex;flex-direction:column}
-  .lever .ln{display:flex;align-items:center;gap:8px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
-  .lever .ln .d{width:7px;height:7px;border-radius:50%}
+  .lever .ln{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);font-weight:500}
+  .lever .ln .d{width:14px;height:2px;border-radius:1px;flex:none}
   .lever h3{font-family:var(--head-f);font-size:16.5px;font-weight:500;color:var(--head);margin:9px 0 0;letter-spacing:-.01em;line-height:1.2}
   .lever p{font-size:12.5px;color:var(--soft);margin:7px 0 0;line-height:1.45}
   .lvis{margin-top:13px;border:1px solid var(--line);border-radius:12px;padding:12px 13px;background:var(--sand2)}
@@ -130,7 +130,7 @@
   .fan .farr svg{width:15px;height:15px}
   .fan .teams{display:flex;flex-direction:column;gap:6px}
   .fan .tm2{font-size:11.5px;color:var(--soft);display:flex;align-items:center;gap:8px}
-  .fan .tm2 .d{width:7px;height:7px;border-radius:50%;flex:none}
+  .fan .tm2 .d{width:12px;height:2px;border-radius:1px;flex:none}
   /* Hebel 3 – Entlastung (vorher/nachher) */
   .relief .old{font-size:11.5px;color:var(--faint);text-decoration:line-through}
   .relief .narr{margin:7px 0;color:var(--faint);display:flex}
@@ -139,9 +139,11 @@
   .relief .new .ck{width:17px;height:17px;border-radius:50%;background:#E7F1EB;border:1px solid #D7E8DD;display:inline-flex;align-items:center;justify-content:center;flex:none}
   .relief .new .ck svg{width:10px;height:10px;color:var(--green)}
   /* Nutzen */
-  .benes{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}
-  .bene{display:inline-flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:9px 15px;font-size:13px;color:var(--head)}
-  .bene .d{width:7px;height:7px;border-radius:50%;flex:none}
+  .benes{display:flex;flex-wrap:wrap;align-items:center;row-gap:8px;margin-top:16px}
+  .bene{display:inline-flex;align-items:center;font-size:13.5px;color:var(--head);padding:2px 0}
+  .bene + .bene::before{content:"";width:1px;height:14px;background:var(--line);margin:0 18px;flex:none}
+  @media (max-width:860px){.benes{flex-direction:column;align-items:flex-start;row-gap:7px}.bene + .bene::before{display:none}}
+  .bene .d{display:none}
   /* CTA */
   .cta{margin-top:26px;background:linear-gradient(120deg,var(--plum-deep),var(--plum));color:#fff;border-radius:20px;padding:24px 26px;
     display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:0 26px 48px -26px rgba(46,37,53,.55)}
