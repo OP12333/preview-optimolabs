@@ -66,9 +66,9 @@
   .msg .nm .tm{margin-left:auto;font-size:10px;color:var(--faint);font-weight:400}
   .msg .sn{font-size:11.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px;display:flex;align-items:center;gap:6px}
   .catlbl{font-weight:600}
-  .flag{font-size:13px;font-weight:500;border-radius:999px;padding:1px 7px;flex:none}
-  .flag.hoch{color:#A83C39;background:#FBE7E6}
-  .flag.mittel{color:#9A5712;background:#F8EDE0}
+  .flag{font-size:13px;font-weight:500;flex:none}
+  .flag.hoch{color:#A83C39;font-weight:600}
+  .flag.mittel{color:#9A5712;font-weight:600}
   .detail{padding:15px 16px}
   .who-row{display:flex;align-items:center;gap:9px;margin-bottom:9px}
   .who-row .av2{width:32px;height:32px;border-radius:8px;background:var(--acc);color:#fff;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;letter-spacing:.04em;flex:none}
@@ -120,9 +120,14 @@
   .lvis{margin-top:13px;border:1px solid var(--line);border-radius:12px;padding:12px 13px;background:var(--sand2)}
   .grow{flex:1}
   /* Hebel 1 – Kategorie-Chips */
-  .catchips{display:flex;flex-wrap:wrap;gap:6px}
-  .cc{font-size:10.5px;font-weight:600;border-radius:999px;padding:3px 10px}
-  .lvis .vn{font-size:10.5px;color:var(--muted);margin-top:10px}
+  .catkey{display:grid;grid-template-columns:1fr 1fr;gap:9px 18px}
+  .catkey .ck{display:flex;align-items:center;gap:9px;font-size:13.5px;color:var(--muted)}
+  .catkey .ck s{width:13px;height:2px;border-radius:1px;background:var(--line);text-decoration:none;flex:none}
+  .catkey .ck.on{color:var(--head);font-weight:600}
+  .catkey .ck.on s{background:var(--acc)}
+  
+  .lvis .vn{font-size:13px;color:var(--muted);margin-top:14px;padding-top:11px;border-top:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .vn b{font-weight:600;color:var(--head)}
   /* Hebel 2 – Weiterleitungs-Fan */
   .fan{display:flex;align-items:center;gap:11px}
   .fan .src0{width:32px;height:32px;border-radius:9px;background:var(--acc-soft);border:1px solid var(--acc-line);display:flex;align-items:center;justify-content:center;color:var(--acc);flex:none}
@@ -301,13 +306,13 @@
       <h3>Sort requests faster</h3>
       <p>Category and urgency are clear straight away – without reading every email in full first.</p>
       <div class="lvis">
-        <div class="catchips">
-          <span class="cc" style="color:#4C3E5E;background:#F1ECF3">Lettings</span>
-          <span class="cc" style="color:#A85C51;background:#F6E7E4">Fault</span>
-          <span class="cc" style="color:#9A6A2E;background:#F6EEE0">Owner</span>
-          <span class="cc" style="color:#316B4D;background:#E7F1EB">Tenant</span>
+        <div class="catkey">
+          <span class="ck on"><s></s>Lettings</span>
+          <span class="ck"><s></s>Fault</span>
+          <span class="ck"><s></s>Owner</span>
+          <span class="ck"><s></s>Tenant</span>
         </div>
-        <div class="vn">+ urgency: high / medium / low</div>
+        <div class="vn"><span>Urgency</span><b>high</b></div>
       </div>
       <div class="grow"></div>
     </div>
